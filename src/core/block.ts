@@ -13,12 +13,12 @@ class Block {
     prevBlockHash: string;
     blockHash: string;
 
-    constructor (blockHeight: number, transactions: Transaction[], trxCount: number, prevBlockHash: string) {
+    constructor (blockHeight: number, transactions: Transaction[], prevBlockHash: string) {
         this.nonce = 0;
         this.blockHeight = blockHeight;
         this.transactions = transactions;
-        this.trxCount = trxCount;
-        this.timestamp = 0;
+        this.trxCount = transactions.length;
+        this.timestamp = new Date().toISOString();
         this.merkleroot = '';
         this.prevBlockHash = prevBlockHash;
         this.blockHash = '';
@@ -32,14 +32,10 @@ class Block {
         
         this.blockHash = hash;
         this.nonce = nonce;
-        this.timestamp = Date.now();
     }
 
     CalculateMerkleRoot(): string {
-        if (this.transactions.length === 0) {
-            return '';
-        }
-        return buildMerkleTree(this.transactions);
+        return this.transactions.length ? buildMerkleTree(this.transactions) : '';
     }
 }
 
