@@ -61,10 +61,9 @@ class BlockChain {
     AddNewBlock(): Block {
         const blockHeight = this.chain.length + 1;
         const transactions: Transaction[] = this.transactionPool;
-        const trxCount = transactions.length;
         const prevBlockHash = this.GetLastBlock().blockHash;
 
-        const newBlock = new Block(blockHeight, transactions, trxCount, prevBlockHash);
+        const newBlock = new Block(blockHeight, transactions, prevBlockHash);
         newBlock.SetBlockProps(this.difficulty);
 
         // Reset transaction pool after block is added
