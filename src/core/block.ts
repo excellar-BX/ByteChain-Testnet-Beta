@@ -4,14 +4,14 @@ import ProofOfWork from '../consensus/pow'
  
 // Block class
 class Block {
-    nonce: number;
-    blockHeight: number;
-    timestamp: number;
-    transactions: Transaction[];
+    readonly nonce: number;
+    readonly blockHeight: number;
+    readonly timestamp: number;
+    readonly transactions: Transaction[];
     trxCount: number;
     merkleroot: string;
-    prevBlockHash: string;
-    blockHash: string;
+    readonly prevBlockHash: string;
+    readonly blockHash: string;
 
     constructor (blockHeight: number, transactions: Transaction[], prevBlockHash: string) {
         this.nonce = 0;
